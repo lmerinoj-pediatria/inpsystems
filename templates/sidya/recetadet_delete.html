@@ -1,0 +1,34 @@
+<div id="popup2" class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header bg-danger">
+      <h4 class="modal-title">Eliminar Detalle de la Receta</h4>      
+      
+    </div>
+      <form role="form" action="{% url 'sidya:receta_delete' obj.receta_id obj.pk %}" method="post"  class="form-inline">
+          <div class="col-xl-12 col-md-12 mb-12">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2"> 
+                        {% csrf_token %}                        
+                          <h3>¿Confirma que desea eliminar</h3><br> 
+                          <p class="text-primary"><b>{{ obj.producto.nombre}}</b></p><br> 
+                          <h3>de la receta?</h3>                        
+                        <div class="dropdown-divider"></div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-success">Si, Eliminar</button>
+                                <button type="button" class="btn btn-danger" onclick="return cerrar_modal_del()">
+                                        Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>                  
+                  </div>
+                </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</div> 
+

@@ -1,0 +1,9 @@
+DELIMITER $$
+CREATE TRIGGER inserta_receta AFTER INSERT ON sidya_receta FOR EACH ROW 
+BEGIN
+
+  INSERT INTO catalogos_producto (clave,nombre,cal_unimed_min,unimed_min_id,habilitado,almacen_id)
+  VALUES (new.id,new.nombre,new.calorias_totales,new.unidad_medida_id,'1','04323');   
+  
+END $$
+DELIMITER ;

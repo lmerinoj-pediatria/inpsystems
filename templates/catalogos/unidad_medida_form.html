@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block nomsec %} Administración de Unidad de Medida {% endblock nomsec %}
+
+{% block nomsecmp %} Administración Unidad Medida {% endblock nomsecmp %}
+
+{% block newbtn %} {% endblock newbtn %}
+
+{% block contenidosec %}
+<div class="container">
+  <form method="post" autocomplete="off">
+      <div class="card card-default">
+          <div class="card-header bg-dark">
+            <h3 class="card-title text-warning" style="font-weight: bold;">Agregar / Editar - Unidad de Medida</h3>          
+          </div>
+      <div class="card-body">
+      {% csrf_token %}
+      <div class="row">        
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label>Nombre(*):</label><br>                    
+          {{ form.nombre }}
+        </div>
+        <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+          <label>Nombre corto(*):</label><br>                    
+          {{ form.nombre_corto }}
+        </div>
+        <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+          <label>Habilitado:</label><br>                    
+          {{ form.habilitado }}
+        </div>                                                              
+      </div>        
+        <!-- /.card-body -->      
+        <div class="card-footer">
+          <hr class="hrfrm" style="border:solid 1px;color:#2e86c1;">
+          <br>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+            <a href="{% url 'catalogos:unidad_medida_list' %}" class="btn btn-danger"><i class="fas fa-times-circle"></i> Cancelar</a>
+          </div>
+      </div>
+  </form>
+</div>    
+{% endblock contenidosec %}

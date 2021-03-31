@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block nomdev %} INP | SIES {% endblock nomdev %}
+
+{% block nomsec %} Listado de Encuestas de Pacientes {% endblock nomsec %}
+
+{% block nomsecmp %} Listado Encuestas Pacientes {% endblock nomsecmp %}
+
+{% block newbtn %}
+  {% if perms.sies.add_encuestapacientes%}
+  <a class="btn btn-primary" href="{% url 'sies:encuesta_pacientes_new' %}"><i class="nav-icon fas fa-plus-circle"></i> Nueva Encuesta</a> 
+  {% endif %}
+{% endblock newbtn %}
+
+{% block contenidosec %}
+
+<table id="tablelist" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>     
+      <th>#</th>
+      <th>Fecha de registro</th>
+      <th>Pregunta 1</th>
+      <th>Pregunta 2</th>
+      <th>Pregunta 3</th>
+      <th>Pregunta 4</th>
+      <th>Pregunta 5</th>
+      <th>Pregunta 6</th>
+      <th>Pregunta 7</th>
+      <th>Pregunta 8</th>
+      <th>Pregunta 9</th>
+      <th>Pregunta 10</th>
+      <th>Sugerencias</th>      
+      <th>Estado</th> 
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in obj %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.fecha_registro}}</td>
+            <td>{{item.pregunta1}}</td>
+            <td>{{item.pregunta2}}</td>
+            <td>{{item.pregunta3}}</td>
+            <td>{{item.pregunta4}}</td>
+            <td>{{item.pregunta5}}</td>
+            <td>{{item.pregunta6}}</td>
+            <td>{{item.pregunta7}}</td>
+            <td>{{item.pregunta8}}</td>
+            <td>{{item.pregunta9}}</td>
+            <td>{{item.pregunta10}}</td>
+            <td>{{item.sugerencias}}</td>
+            
+            <td>
+              {% if item.habilitado %}
+                <span class="label bg-success rounded p-2">Activo</span>
+              {% else %}
+                <span class="label bg-danger rounded p-2">Inactivo</span>
+              {% endif %}
+            </td> 
+        </tr>
+        {% endfor %}    
+    </tbody>    
+  </table>
+           
+{% endblock contenidosec %}

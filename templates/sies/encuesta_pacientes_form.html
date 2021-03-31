@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block nomdev %} INP | SIES {% endblock nomdev %}
+
+{% block nomsec %} Registro de Encuestas de Satisfacción de Pacientes{% endblock nomsec %}
+
+{% block nomsecmp %} Encuesta Pacientes {% endblock nomsecmp %}
+
+{% block newbtn %} {% endblock newbtn %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% block contenidosec %}
+<div class="container">
+  <form method="post" autocomplete="off">
+      <div class="card card-default">
+          <div class="card-header bg-dark">
+            <h3 class="card-title text-warning" style="font-weight: bold;">Nueva Encuesta</h3>          
+          </div>
+      <div class="card-body">
+      
+      <p class="h5 mt-3 mb-3">Sabemos que debemos mejorar, por esto deseamos conocer su opinión acerca del servicio que se le proporciona en Toma de Productos. Por favor califique lo siguiente:</p>
+      
+      <br>
+      
+      <p class="h6 text-danger">* Campos obligatorios</p>      
+
+      <br>
+
+      {% csrf_token %}      
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">1.- El trato que recibió en la recepción de toma de productos, al solicitar su cita de laboratorio fue (*):</label><br>                    
+          {{ form.pregunta1 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">2.- El tiempo en ser atendido para su toma y/o recepción de muestras fue (*):</label><br>                    
+          {{ form.pregunta2 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">3.- La información que se le proporcióno en la recepción de toma de productos, sobre como traer a su hijo(a) para sus estudios de laboratorio fue (*):</label><br>                    
+          {{ form.pregunta3 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">4.- Las indicaciones que se le dieron en la recepción de toma de productos, sobre como recolectar y traer las muestras de su hijo(a) fueron (*):</label><br>                    
+          {{ form.pregunta4 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">5.- La atención que recibió en el consultorio de toma de productos, durante la toma y/o recepción de muestras de su hijo(a) fue (*):</label><br>                    
+          {{ form.pregunta5 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">6.- La resolución de dudas cuando se atendió a su hijo(a) en el consultorio de toma de productos fue (*):</label><br>                    
+          {{ form.pregunta6 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">7.- Como observó la limpieza y el orden del consultorio donde se atendió a su hijo(a) (*):</label><br>                    
+          {{ form.pregunta7 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">8.- Como observó la limpieza de la sala de espera y los baños (*):</label><br>                    
+          {{ form.pregunta8 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">9.- Como califica el trato que recibio en la recepción de orinas (*):</label><br>                    
+          {{ form.pregunta9 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">10.- Como califica el servicio de toma de productos (*):</label><br>                    
+          {{ form.pregunta10 }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          <label class="text-dark h5">Sugerencias</label><br>                    
+          {{ form.sugerencias }}
+        </div>
+        <span>
+         {{ form.habilitado }}
+        </span>                                                      
+      </div>                
+        <!-- /.card-body -->      
+        <div class="card-footer">
+          <hr class="hrfrm" style="border:solid 1px;color:#2e86c1;">
+          <br>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+            <a href="{% url 'sies:encuesta_pacientes_list' %}" class="btn btn-danger"><i class="fas fa-times-circle"></i> Cancelar</a>
+          </div>
+      </div>
+  </form>
+
+  
+  
+</div>    
+{% endblock contenidosec %}

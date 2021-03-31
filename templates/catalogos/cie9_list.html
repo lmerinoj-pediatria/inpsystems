@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block nomsec %} Listado de Clasificaciónes {% endblock nomsec %}
+
+{% block nomsecmp %} Listado Clasificaciónes {% endblock nomsecmp %}
+
+{% block newbtn %}
+  {% if perms.catalogos.add_clasificacion%} 
+  <a class="btn btn-primary" href="{% url 'catalogos:cie9_new' %}"><i class="nav-icon fas fa-plus-circle"></i> Nueva Clasificación Cie-9</a> 
+  {% endif %}
+{% endblock newbtn %}
+
+{% block contenidosec %}
+
+<table id="tablelist" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Clave</th>
+      <th>Nombre</th>
+      <th>Estado</th>          
+      <th class="all">Acciones</th>      
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in obj %}
+        <tr>      
+            <td>{{item.id}}</td>
+            <td>{{item.clave}}</td>
+            <td>{{item.nombre}}</td>
+            <td>
+              {% if item.habilitado %}
+                <span class="label bg-success rounded p-2">Activo</span>
+              {% else %}
+                <span class="label bg-danger rounded p-2">Inactivo</span>
+              {% endif %}
+            </td>                       
+            <td>
+              {% if perms.catalogos.change_cie9%}
+              <a href="{% url 'catalogos:cie9_edit' item.id %}" class="btn btn-warning" style="border-radius: 50%;" title="Editar registro"><span class="fas fa-edit"></span></a>
+              {% endif %}
+            </td>
+        </tr>
+        {% endfor %}    
+    </tbody>    
+  </table>
+           
+{% endblock contenidosec %}

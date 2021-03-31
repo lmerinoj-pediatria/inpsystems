@@ -1,0 +1,64 @@
+.btn {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;    
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+
+.btn-app {
+    color: white;
+    box-shadow: none;
+    border-radius: 3px;
+    position: relative;
+    padding: 10px 15px;
+    margin: 0;
+    width: 5px !important;    
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    font-size: 30px;
+    transition: all .2s;
+    background-color: steelblue !important;
+    margin-bottom: 10px;
+    margin-right: 5px;    
+}
+
+
+.btn-app:hover {
+    border-color: #aaa;
+    transform: scale(1.1);
+}
+
+.pdf {
+  background-color: #dc2f2f !important;
+}
+
+.excel {    
+    background-color: #3ca23c !important;
+}
+
+.csv {
+    background-color: #e86c3a !important;
+}
+
+.imprimir {
+    background-color: #8766b1 !important;
+}
+
+
+Esto es opcional pero sirve para que todos los botones de exportacion se distribuyan de manera equitativa usando flexbox
+
+.flexcontent {
+    display: flex;
+    justify-content: space-around;
+}
+

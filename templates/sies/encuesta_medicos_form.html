@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block nomdev %} INP | SIES {% endblock nomdev %}
+
+{% block nomsec %} Encuesta de Satisfacción del Área Médica{% endblock nomsec %}
+
+{% block nomsecmp %} Encuesta área Médica {% endblock nomsecmp %}
+
+{% block newbtn %} {% endblock newbtn %}
+
+{% block contenidosec %}
+<div class="container">
+  <form method="post" autocomplete="off">
+      <div class="card card-default">
+          <div class="card-header bg-dark">
+            <h3 class="card-title text-warning" style="font-weight: bold;">Nueva Encuesta</h3>          
+          </div>
+      <div class="card-body">
+      
+      <p class="h5 mt-3 mb-3">Su opinión es muy importante para nosotros, por lo que para mejorar nuestro servicio, el DACEE, desea saber como califica la calidad de los estudios y el servicio que le brindamos. Por favor califique lo siguiente:</p>
+      
+      <br>
+      
+      <p class="h6 text-danger">* Campos obligatorios</p>      
+
+      <br>
+
+      {% csrf_token %}      
+      <div class="row">
+        <div class="form-group col-lg-9 col-md-9 col-sm-9 col-xs-12">
+          <label class="text-dark h5">Servicio (*):</label><br>                    
+          {{ form.area }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold">1.- El tiempo en ser atendido para su toma y/o recepción de muestras fue (*):</span>                                                              
+      </div>
+      <br>
+      <div class="row">        
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Matutino:</label><br>                    
+          {{ form.p1_matutino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Vespertino:</label><br>                    
+          {{ form.p1_vespertino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Nocturno:</label><br>                    
+          {{ form.p1_nocturno }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Fin de semana:</label><br>                    
+          {{ form.p1_fin }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold">2.- El tiempo en ser atendido, al entregar los especímenes en la recepción del laboratorio ¿Ha sido?, especifique el turno (*):</span>                                                              
+      </div>
+      <br>
+      <div class="row">        
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Matutino:</label><br>                    
+          {{ form.p2_matutino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Vespertino:</label><br>                    
+          {{ form.p2_vespertino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Nocturno:</label><br>                    
+          {{ form.p2_nocturno }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Fin de semana:</label><br>                    
+          {{ form.p2_fin }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold">3.- La resolución de sus dudas sobre los especímenes y/o resultados de laboratorio. ¿Ha sido? (*):</span>                                                              
+      </div>
+      <div class="row">        
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Matutino:</label><br>                    
+          {{ form.p3_matutino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Vespertino:</label><br>                    
+          {{ form.p3_vespertino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Nocturno:</label><br>                    
+          {{ form.p3_nocturno }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Fin de semana:</label><br>                    
+          {{ form.p3_fin }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold">4.- Con base en los criterios de aceptación de especimenes documentados, la información proporcionada por el personal de laboratorio ¿Ha sido? (*):</span>                                                              
+      </div>
+      <br>
+      <div class="row">        
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Matutino:</label><br>                    
+          {{ form.p4_matutino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Vespertino:</label><br>                    
+          {{ form.p4_vespertino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Nocturno:</label><br>                    
+          {{ form.p4_nocturno }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Fin de semana:</label><br>                    
+          {{ form.p4_fin }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold">5.- Considera usted que la comunicación con el personal de recepción de muestras es (*):</span>                                                              
+      </div>
+      <br>
+      <div class="row">        
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Matutino:</label><br>                    
+          {{ form.p5_matutino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Vespertino:</label><br>                    
+          {{ form.p5_vespertino }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Nocturno:</label><br>                    
+          {{ form.p5_nocturno }}
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <label class="h5 text-gray">Fin de semana:</label><br>                    
+          {{ form.p5_fin }}
+        </div>                                                      
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold">6.- Nivel de confiabilidad de los resultados de laboratorio (*):</span>                                                              
+      </div>
+      <br>
+      <div class="row">        
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="h5 text-gray">Bacteriología:</label><br>                    
+          {{ form.p6_bacter }}
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="h5 text-gray">Bioquimica y Endocrino:</label><br>                    
+          {{ form.p6_bioq_endocrino }}
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="h5 text-gray">Hemato-Oncología:</label><br>                    
+          {{ form.p6_hemato_onco }}
+        </div>                                                           
+      </div>
+      <div class="row">        
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="h5 text-gray">Inmunogenética:</label><br>                    
+          {{ form.p6_inmuno_genetica }}
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="h5 text-gray">Inmuno-Alergia:</label><br>                    
+          {{ form.p6_inmuno_alergia }}
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="h5 text-gray">Nefrología:</label><br>                    
+          {{ form.p6_nefro }}
+        </div>                                                           
+      </div>
+      <div class="row">        
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="h5 text-gray">Para-Micro:</label><br>                    
+          {{ form.p6_paramic }}
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="h5 text-gray">Q. Clinica-Urg:</label><br>                    
+          {{ form.p6_quim_clin_urg }}
+        </div>
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="h5 text-gray">Virología:</label><br>                    
+          {{ form.p6_viro }}
+        </div>                                                           
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold"> 7.- ¿Conoce usted que el procedimiento para implementar nuevas pruebas es a través de solicitarlos vía SADYTRA? (*):</span>                                                              
+      </div>
+      <div class="row">        
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">                            
+          {{ form.p7 }}
+        </div>                                                   
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold"> 8.- ¿Como evalúa la oportunidad de entrega de resultados de laboratorio? (*):</span>                                                              
+      </div>
+      <div class="row">        
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">                            
+          {{ form.p8 }}
+        </div>                                                   
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold"> 9.- ¿Como considera la atención a quejas y sugerencias en el DACEE? (*):</span>                                                              
+      </div>
+      <div class="row">        
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">                            
+          {{ form.p9 }}
+        </div>                                                   
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold"> 10.- ¿Ha observado que los horarios de atención se encuentran en la ventanilla de recepción? (*):</span>                                                              
+      </div>
+      <div class="row">        
+        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">                            
+          {{ form.p10 }}
+        </div>                                                   
+      </div>
+      <br>
+      <div class="row">
+        <span class="text-dark h5 font-weight-bold"> Comentarios y/o sugerencias</span>                                                              
+      </div>
+      <div class="row">        
+        <div class="form-group col-lg-9 col-md-9 col-sm-9 col-xs-12">                            
+          {{ form.sugerencias }}
+        </div>                                                   
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <label class="text-dark h5">Clave del médico (*)</label><br>                    
+          {{ form.clave_medico }}
+        </div>
+        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <label class="text-dark h5">Nombre del médico (*)</label><br>                    
+          {{ form.nombre_medico }}
+        </div>                                                            
+      </div>                
+        <!-- /.card-body -->      
+        <div class="card-footer">
+          <hr class="hrfrm" style="border:solid 1px;color:#2e86c1;">
+          <br>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+            <a href="{% url 'sies:encuesta_medicos_confirmacion' %}" class="btn btn-danger"><i class="fas fa-times-circle"></i> Cancelar</a>
+          </div>
+      </div>
+  </form>
+</div>    
+{% endblock contenidosec %}

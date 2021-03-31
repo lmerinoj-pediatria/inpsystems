@@ -1,0 +1,61 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block nomsec %}
+<div class="card">
+  <div class="card-header bg-dark text-center">
+    <h4 id="fechaactual" class="text-warning"></h4>    
+  </div>
+</div>
+{% endblock nomsec %}
+
+{% block nomsecmp %} Home {% endblock nomsecmp %}
+
+{% block newbtn %} {% endblock newbtn %}
+
+<!--Bloque de contenido del escritorio-->
+{% block contenidosec %}
+<div class="content-wrapper">
+  <div class="panel-body">      
+          
+    <!--  CODIGO PARA EL DASHBOARD -->
+
+    <br>
+        <div class="mt-2 mb-5">
+          <h1 class="text-center">Bienvenido(a) a la plataforma</h1>
+        </div>        
+        <div class="text-center mb-5">
+          <img src="{% static 'base/img/inpsys.png' %}" class="img-responsive">
+        </div>
+        
+        <br>
+
+        <p class="ml-5">
+          INPSYS, es una herramienta que facilita el acceso a algunas de las aplicaciónes que operan dentro del INP. 
+        </p>        
+        <p class="ml-5">
+          En el menú del lado izquierdo encontrará las opciones de acuerdo a su perfil desde donde podra acceder a las aplicaciones:
+        </p>
+        <ul class="ml-5">
+            <li class="opcioneslist">SIDYA    | Sistema de Dietética y Alimentación</li>
+            <li class="opcioneslist">SIES     | Sistema de Encuestas de Satisfacción</li>
+            <li class="opcioneslist">SIGMEFI  | Sistema de Gestión Médico Financiero</li>
+            <li class="opcioneslist">SIGO     | Sistema de Gestión de Oficios</li>
+            <li class="opcioneslist">SIREA    | Sistema de Registro de Eventos Adversos</li>
+            <li class="opcioneslist">SISCHAT  | Sistema de Chat</li>
+            <li class="opcioneslist">SISEI    | Sistema de Solicitud de Estudios de Imagen</li>
+            <li class="opcioneslist">SISCOVID | Sistema de Registro de Estudios Covid</li>
+        </ul>
+        <br>
+  </div>
+</div>
+<script>  
+
+  var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+  var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+  var f=new Date();
+  var fecact= diasSemana[f.getDay()] + " " + f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear();
+  var muestrafecha = document.getElementById('fechaactual');
+  muestrafecha.innerHTML = "Buen día, hoy es " + fecact;
+
+  </script>
+{% endblock contenidosec %}

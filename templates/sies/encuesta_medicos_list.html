@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block nomdev %} INP | SIES {% endblock nomdev %}
+
+{% block nomsec %} Listado de Encuestas del Área Médica {% endblock nomsec %}
+
+{% block nomsecmp %} Listado Encuestas del Área Médica {% endblock nomsecmp %}
+
+{% block newbtn %}
+  {% if perms.sies.add_encuestapacientes%}
+  <a class="btn btn-primary" href="{% url 'sies:encuesta_medicos_new' %}"><i class="nav-icon fas fa-plus-circle"></i> Nueva Encuesta</a> 
+  {% endif %}
+{% endblock newbtn %}
+
+{% block contenidosec %}
+
+<table id="tablelist" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>     
+      <th>#</th>
+      <th>Fecha de registro</th>
+      <th>Servicio</th>
+      <th>Preg.1 Matutino</th>
+      <th>Preg.1 Vespertino</th>
+      <th>Preg.1 Nocturno</th>
+      <th>Preg.1 Fin de semana</th>
+      <th>Preg.2 Matutino</th>
+      <th>Preg.2 Vespertino</th>
+      <th>Preg.2 Nocturno</th>
+      <th>Preg.2 Fin de semana</th>
+      <th>Preg.3 Matutino</th>
+      <th>Preg.3 Vespertino</th>
+      <th>Preg.3 Nocturno</th>
+      <th>Preg.3 Fin de semana</th>
+      <th>Preg.4 Matutino</th>
+      <th>Preg.4 Vespertino</th>
+      <th>Preg.4 Nocturno</th>
+      <th>Preg.4 Fin de semana</th>
+      <th>Preg.5 Matutino</th>
+      <th>Preg.5 Vespertino</th>
+      <th>Preg.5 Nocturno</th>
+      <th>Preg.5 Fin de semana</th>
+      <th>Preg.6 Bacteriologia</th>
+      <th>Preg.6 Bioq. y Endocrino</th>
+      <th>Preg.6 Hemato-Onco</th>
+      <th>Preg.6 Inmuno-Genética</th>
+      <th>Preg.6 Inmuno-Alergia</th>
+      <th>Preg.6 Nefro</th>
+      <th>Preg.6 Para-Mic</th>
+      <th>Preg.6 Quim.Clin.Urg</th>
+      <th>Preg.6 Viro</th>
+      <th>Preg.7 Procedimientos</th>
+      <th>Preg.8 Oportunidad</th>
+      <th>Preg.9 Atención</th>
+      <th>Preg.10 Horarios</th>
+      <th>Sugerencias</th>
+      <th>Clave del médico</th>
+      <th>Nombre del médico</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in obj %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.fecha_registro}}</td>
+            <td>{{item.area}}</td>
+            <td>{{item.p1_matutino}}</td>
+            <td>{{item.p1_vespertino}}</td>
+            <td>{{item.p1_nocturno}}</td>
+            <td>{{item.p1_fin}}</td>
+            <td>{{item.p2_matutino}}</td>
+            <td>{{item.p2_vespertino}}</td>
+            <td>{{item.p2_nocturno}}</td>
+            <td>{{item.p2_fin}}</td>
+            <td>{{item.p3_matutino}}</td>
+            <td>{{item.p3_vespertino}}</td>
+            <td>{{item.p3_nocturno}}</td>
+            <td>{{item.p3_fin}}</td>
+            <td>{{item.p4_matutino}}</td>
+            <td>{{item.p4_vespertino}}</td>
+            <td>{{item.p4_nocturno}}</td>
+            <td>{{item.p4_fin}}</td>
+            <td>{{item.p5_matutino}}</td>
+            <td>{{item.p5_vespertino}}</td>
+            <td>{{item.p5_nocturno}}</td>
+            <td>{{item.p5_fin}}</td>
+            <td>{{item.p6_bacter}}</td>
+            <td>{{item.p6_bioq_endocrino}}</td>
+            <td>{{item.p6_hemato_onco}}</td>
+            <td>{{item.p6_inmuno_genetica}}</td>
+            <td>{{item.p6_inmuno_alergia}}</td>
+            <td>{{item.p6_nefro}}</td>
+            <td>{{item.p6_paramic}}</td>
+            <td>{{item.p6_quim_clin_urg}}</td>
+            <td>{{item.p6_viro}}</td>
+            <td>{{item.p7}}</td>
+            <td>{{item.p8}}</td>
+            <td>{{item.p9}}</td>
+            <td>{{item.p10}}</td>
+            <td>{{item.sugerencias}}</td>
+            <td>{{item.clave_medico}}</td>
+            <td>{{item.nombre_medico}}</td>           
+        </tr>
+        {% endfor %}    
+    </tbody>    
+  </table>
+           
+{% endblock contenidosec %}

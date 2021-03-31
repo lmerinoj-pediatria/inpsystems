@@ -1,0 +1,17 @@
+select *
+from Area as a
+inner join AreaTemp as at
+on a.clave = at.clave
+
+
+update Area
+set Area.clave,Area.nombre
+from Area as a
+inner join AreaTemp as at
+on a.clave = at.clave
+
+update area
+set area.area_ccosto,area.area_nombre
+from area as a
+inner join area_temporal as at
+on a.area_ccosto = at.area_ccosto

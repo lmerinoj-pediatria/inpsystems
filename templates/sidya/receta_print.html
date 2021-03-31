@@ -1,0 +1,36 @@
+<h2>{{ receta.nombre }}</h2>
+
+<h5 class="text-bold">
+  Calorías de la receta: 
+  <span class="text-danger">
+    {{ receta.calorias_totales }}
+  </span>
+</h5>      
+
+<h5 class="text-bold">
+  Unidad de Medida: 
+  <span class="text-danger">
+    {{ receta.unidad_medida }}
+  </span>
+</h5>
+      
+<h2 class="text-primary">INGREDIENTES</h2>
+<table>
+  <thead>
+    <tr> 
+      <th>Cantidad</th>
+      <th>Unidad de Medida</th>
+      <th>Producto</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ingrediente in ingredientes %}
+    <tr>
+      <td>{{ingrediente.cantidad}}</td>
+      <td>{{ingrediente.unidad_medida}}</td>
+      <td>{{ingrediente.producto}}</td> 
+    </tr>
+    {% endfor %}    
+  </tbody>    
+</table>
+            

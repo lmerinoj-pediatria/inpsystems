@@ -1,0 +1,36 @@
+<h2>{{ menu.dieta }} - {{menu.comensal}}</h2>
+
+<h5 class="text-bold">
+  Servicio del menú: 
+  <span class="text-danger">
+    {{ menu.servicio }}
+  </span>
+</h5>      
+
+<h5 class="text-bold">
+  Calorías del menú: 
+  <span class="text-danger">
+    {{ menu.calorias_totales }}
+  </span>
+</h5>
+      
+<h2 class="text-primary">INGREDIENTES</h2>
+<table>
+  <thead>
+    <tr> 
+      <th>Cantidad</th>
+      <th>Unidad de Medida</th>
+      <th>Producto</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ingrediente in ingredientes %}
+    <tr>
+      <td>{{ingrediente.cantidad}}</td>
+      <td>{{ingrediente.unidad_medida}}</td>
+      <td>{{ingrediente.producto}}</td> 
+    </tr>
+    {% endfor %}    
+  </tbody>    
+</table>
+            

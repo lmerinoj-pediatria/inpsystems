@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block nomdev %} INP | SIGMEFI {% endblock nomdev %}
+
+{% block nomsec %} Control de Pacientes {% endblock nomsec %}
+
+{% block nomsecmp %} Control Pacientes {% endblock nomsecmp %}
+
+{% block newbtn %} {% endblock newbtn %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% block contenidosec %}
+<div class="container">
+  <div id="app">
+    <form method="post" autocomplete="off">
+        <div class="card card-default">
+            <div class="card-header bg-dark">
+              <h3 class="card-title text-warning" style="font-weight: bold;">Nuevo Registro</h3>          
+            </div>
+        <div class="card-body">  
+        
+        {% csrf_token %}      
+        
+        <br>
+        <p class="h3 text-center">1. IDENTIFICACIÓN DEL PACIENTE</p>
+        
+        <hr class="border border-dark">
+        <div class="row">          
+          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label>Procedencia</label><br>                    
+            {{ form.procedencia_paciente }}
+          </div>
+          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label>Programa</label><br>                    
+            {{ form.programa }}
+          </div>
+          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label>Referencia</label><br>                    
+            {{ form.referencia }}
+          </div>                                                               
+        </div>
+        <br>
+        <div class="row">          
+          <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <label>Expediente</label><br>                    
+            {{ form.expediente }}            
+          </div>
+          <div class="form-group col-lg-1 col-md-1 col-sm-1 col-xs-12">            
+            <label class="invisible">.</label><br> 
+            <button class="btn btn-warning" @click="getFilteredRequest()" title="Buscar paciente"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Nombre</label><br>                    
+            {{ form.nombre }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Apellido Paterno</label><br>                    
+            {{ form.ap_paterno }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Apellido Materno</label><br>                    
+            {{ form.ap_materno }}
+          </div> 
+        </div>
+        <br>
+        <div id= "" class="row">
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Fecha de nacimiento</label><br>                    
+            {{ form.fecha_nacimiento }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Edad</label><br>                             
+            {{ form.edad_ingreso }}            
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>CURP/CUN</label><br>                    
+            {{ form.curp }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Entidad Federativa</label><br>                    
+            {{ form.entidad_federativa }}
+          </div>                                        
+        </div>
+        <br>       
+
+        <p class="h3 text-center">2. DATOS ADICIONALES</p>
+        
+        <hr class="border border-dark">         
+        <br>
+        <div class="row">
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Folio SIREB</label><br>                    
+            {{ form.folio }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Póliza de afiliación</label><br>                    
+            {{ form.poliza }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Categoría</label><br>                    
+            {{ form.categoria }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Tipo de registro</label><br>                    
+            {{ form.tipo_registro }}
+          </div>                                                
+        </div>
+        <br>
+        <div class="row">          
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Estatus</label><br>                    
+            {{ form.estatus }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Monto recuperado</label><br>                    
+            {{ form.monto_recuperado }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Monto erogado</label><br>                    
+            {{ form.monto_erogado }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Comentario</label><br>                    
+            {{ form.comentario }}
+          </div>                                                    
+        </div>
+        <br>               
+        <br>
+
+        <p class="h3 text-center">3. DATOS MÉDICOS</p>
+        
+        <hr class="border border-dark">
+        <br>
+        <div class="row">          
+          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label>Fecha de ingreso</label><br>                    
+            {{ form.fecha_ingreso }}
+          </div>
+          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label>
+              Fecha de atención
+            </label><br>                    
+            {{ form.fecha_atencion }}
+          </div>
+          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label>Fecha de egreso</label><br>                    
+            {{ form.fecha_egreso }}
+          </div>                                                      
+        </div>
+        <hr style="border: 1px dashed;">
+        <div class="row" id="app2">
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>CIE</label><br>                    
+            {{ form.cie_cve1 }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Clave diagnostico</label><br>                    
+            {{ form.cve_diag1 }}
+          </div>
+          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label>Descripción diagnóstico</label><br>                    
+            {{ form.descrip_diag1 }}
+          </div>          
+        </div>
+        <div class="row">
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Servicio</label><br>                    
+            {{ form.servicio_diag1 }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Médico tratante</label><br>                    
+            {{ form.medico_diag1 }}
+          </div>
+        </div>
+        <hr style="border: 1px dashed;">
+        <div class="row">
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>CIE</label><br>                    
+            {{ form.cie_cve2 }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Clave diagnostico</label><br>                    
+            {{ form.cve_diag2 }}
+          </div>
+          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label>Descripción diagnóstico</label><br>                    
+            {{ form.descrip_diag2 }}
+          </div>          
+        </div>        
+        <div class="row">
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Servicio</label><br>                    
+            {{ form.servicio_diag2 }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Médico tratante</label><br>                    
+            {{ form.medico_diag2 }}
+          </div>
+        </div>
+        <hr style="border: 1px dashed;">
+        <div class="row">
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>CIE</label><br>                    
+            {{ form.cie_cve3 }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Clave diagnostico</label><br>                    
+            {{ form.cve_diag3 }}
+          </div>
+          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label>Descripción diagnóstico</label><br>                    
+            {{ form.descrip_diag3 }}
+          </div>          
+        </div>
+        <div class="row">
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Servicio</label><br>                    
+            {{ form.servicio_diag3 }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Médico tratante</label><br>                    
+            {{ form.medico_diag3 }}
+          </div>
+        </div>
+
+        <br>
+
+        <p class="h3 text-center">4. DOCUMENTOS EN PDF</p>
+        
+        <hr class="border border-dark">
+        <br>
+        <div class="row">          
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>INE</label><br>                    
+            {{ form.fecha_ingreso }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>CURP</label><br>                    
+            {{ form.fecha_atencion }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Constancia</label><br>                    
+            {{ form.fecha_egreso }}
+          </div>
+          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <label>Póliza</label><br>                    
+            {{ form.fecha_egreso }}
+          </div>                                                      
+        </div>
+
+          <!-- /.card-body -->      
+          <div class="card-footer">
+            <hr class="hrfrm" style="border:solid 1px;color:#2e86c1;">
+            <br>
+            <div class="text-center">
+              <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+              <a href="{% url 'sigmefi:registro_list' %}" class="btn btn-danger"><i class="fas fa-times-circle"></i> Cancelar</a>
+            </div>
+        </div>
+    </form>
+  </div>  
+</div>
+<!--Arvhivos Javascript necesarios para este formulario-->
+<script src="../../static/base/js/sigmefi/main.js"></script>
+<script src="../../static/base/js/sigmefi/webservice.js"></script>    
+{% endblock contenidosec %}

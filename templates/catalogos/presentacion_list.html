@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block nomsec %} Listado de Presentación {% endblock nomsec %}
+
+{% block nomsecmp %} Listado Presentación {% endblock nomsecmp %}
+
+{% block newbtn %}
+  {% if perms.catalogos.add_presentacion%}
+  <a class="btn btn-primary" href="{% url 'catalogos:presentacion_new' %}"><i class="nav-icon fas fa-plus-circle"></i> Nueva Presentación</a> 
+  {% endif %}
+{% endblock newbtn %}
+
+{% block contenidosec %}
+
+<table id="tablelist" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>      
+      <th>Clave</th>
+      <th>Nombre</th>
+      <th>Estado</th> 
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in obj %}
+        <tr> 
+            <td>{{item.clave}}</td>
+            <td>{{item.nombre}}</td>
+            <td>
+              {% if item.habilitado %}
+                <span class="label bg-success rounded p-2">Activo</span>
+              {% else %}
+                <span class="label bg-danger rounded p-2">Inactivo</span>
+              {% endif %}
+            </td>      
+        </tr>
+        {% endfor %}    
+    </tbody>    
+  </table>
+           
+{% endblock contenidosec %}

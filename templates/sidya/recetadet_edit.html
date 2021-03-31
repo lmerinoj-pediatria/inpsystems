@@ -1,0 +1,36 @@
+<div id="popup2" class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header bg-warning">
+      <h4 class="modal-title">Editar Detalle de la Receta</h4>      
+      
+    </div>
+      <form role="form" action="{% url 'sidya:recetadet_edit' obj.receta_id obj.pk %}" method="post"  class="form-inline">
+          <div class="col-xl-12 col-md-12 mb-12">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2"> 
+                        {% csrf_token %}                        
+                          <h3>Actualiza la cantidad del articulo:</h3> 
+                          <p class="text-primary"><b>{{ obj.producto.nombre}}</b></p><br>                          
+                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <label>Cantidad:</label><br>                    
+                            {{ form.cantidad }}
+                          </div>                        
+                        <div class="dropdown-divider"></div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-warning">Actualizar</button>
+                                <button type="button" class="btn btn-danger" onclick="return cerrar_modal_edit()">
+                                        Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>                  
+                  </div>
+                </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</div> 

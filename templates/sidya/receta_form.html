@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block nomdev %} INP | SIDYA {% endblock nomdev %}
+
+{% block nomsec %} Administración de Recetas {% endblock nomsec %}
+
+{% block nomsecmp %} Administración Recetas {% endblock nomsecmp %}
+
+{% block newbtn %} {% endblock newbtn %}
+
+{% block contenidosec %}
+
+
+
+<div class="container-fluid">   
+  
+  <form method="POST" id="frmRecetas" autocomplete="off">
+    <div class="row">
+      <!--Panel izquierdo-->
+      <div class="col-lg-9">
+        <div class="card">          
+          <div class="card-header bg-dark">            
+            <h3 class="card-title text-warning" style="font-weight: bold;"><i class="fas fa-file"></i> | Agregar / Editar - Receta</h3>          
+          </div>
+          <div class="card-body">
+            {% csrf_token %}                
+            <div class="row">              
+              <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <label>Nombre de la receta:</label><br>                    
+                {{ form_enc.nombre }}
+              </div>
+              <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <label>Unidad de Medida:</label><br>                    
+                {{ form_enc.unidad_medida }}
+              </div>
+              <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <label>Calorías Totales:</label><br>                    
+                {{ form_enc.calorias_totales }}
+              </div>                                               
+            </div>
+          </div>           
+        </div>
+      </div>
+    </div>      
+      <!--Panel derecho-->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header bg-success">
+            <h3 class="card-title text-white" style="font-weight: bold;"><i class="fas fa-box"></i> | Lista de Productos/Artículos</h3>
+          </div>
+          <div class="card-body">                           
+            <table id="tblProducts" class="table table-bordered dt-responsive table-striped table-hover">
+              <thead>
+              <tr>
+                <th>#</th>                
+                <th>Clave</th>
+                <th>Nombre</th>
+                <th>U. Medida Minima</th>
+                <th>Calorias X Unidad Minima</th>
+                <th>Grupo de Alimento</th>
+                <th class="all">Acciones</th> 
+              </tr>
+              </thead>
+              <tbody>
+                  {% for item in productos %}
+                  <tr>        
+                      <td>{{item.id}}</td>
+                      <td>{{item.clave}}</td>
+                      <td>{{item.nombre}}</td>
+                      <td>{{item.unimed_min}}</td>                      
+                      <td>{{item.cal_unimed_min}}</td>
+                      <td>{{item.grupo_alimento}}</td>
+                      <td>
+                        <button type="button" class="btn btn-dark btn-circle" title="Seleccionar ingrediente" onclick="selectProducto({{item.id}},'{{item.clave}}','{{item.nombre}}','{{item.unimed_min}}','{{item.cal_unimed_min}}')"><i class="fas fa-hand-pointer"></i></button>
+                      </td>                   
+                  </tr>
+                  {% endfor %}    
+              </tbody>    
+            </table>            
+          </div>          
+        </div>
+      </div>
+      <!--Panel izquierdo-->
+      <div class="col-lg-12">
+        <div class="card">          
+          <div class="card-header bg-warning">            
+            <h3 class="card-title text-dark" style="font-weight: bold;"><i class="fas fa-file"></i> | Detalle de ingrediente</h3>          
+          </div>
+          <div class="card-body">                            
+            <div class="row">
+              <input class="form-control" type="hidden" name="idprod" id="idprod" readonly>
+              <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <label>Clave del producto:</label><br>                    
+                <input class="form-control" type="text" name="cveprod" id="cveprod" readonly required>
+              </div>  
+              <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                <label>Producto:</label><br>                    
+                <input class="form-control" type="text" name="nomprod" id="nomprod" readonly>
+              </div>
+              <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <label>Unidad de Medida:</label><br>                    
+                <input class="form-control" type="text" name="umminprod" id="umminprod" readonly>
+              </div>      
+            </div>
+            <hr class="text-danger">
+            <div class="row">             
+              <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <label>Calorías individuales del producto:</label><br>                    
+                <input class="form-control" type="text" name="calprod" id="calprod" readonly>
+              </div>
+              <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <label>Cantidad:</label><br>                    
+                <input class="form-control" type="number" name="cant" id="cant" min="0" step=".01" required>
+              </div>              
+              <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <label>Calorías totales del ingrediente:</label><br>                    
+                <input class="form-control" type="text" name="calorias" id="calorias" readonly>
+              </div>
+              <div class="form-group text-center col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <label>Agregar</label><br>                    
+                <button class="btn btn-success" title="Agregar producto"><i class="fas fa-plus-square"></i></button>
+              </div>                                                                   
+            </div>
+          </div>           
+        </div>
+      </div>
+    </div>
+    <!--row paneles superiores-->        
+    <div class="row">        
+      <!--Panel derecho-->
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header bg-blue">
+            <h3 class="card-title text-white" style="font-weight: bold;"><i class="fas fa-boxes"></i> - Detalle de receta</h3>
+        </div>
+          <div class="card-body">                           
+            <table id="tblProducts" class="table table-bordered dt-responsive table-striped table-hover">
+              <thead>
+              <tr>                
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Unidad de Medida</th>
+                <th>Calorias totales del ingrediente</th>
+                <th class="all">Acciones</th> 
+              </tr>
+              </thead>
+              <tbody>
+                  {% for item in detalle %}
+                  <tr>        
+                      <td>{{item.producto}}</td>
+                      <td>{{item.cantidad}}</td>
+                      <td>{{item.unidad_medida}}</td>
+                      <td>{{item.calorias}}</td>
+                      <td>
+                        <!--<button class="btn btn-warning"  onclick="return abrir_modal_edit('{% url 'sidya:recetadet_edit' encabezado.pk item.id %}')" title="Editar ingrediente"><i class="fas fa-edit"></i></button>-->
+                        <button class="btn btn-danger" onclick="return abrir_modal_del('{% url 'sidya:receta_delete' encabezado.pk item.id %}')" title="Eliminar ingrediente"><i class="fas fa-trash"></i></button>                        
+                      </td>                   
+                  </tr>
+                  {% endfor %}    
+              </tbody>    
+            </table>            
+          </div>          
+        </div>
+      </div>
+    </div>
+    <!--row paneles inferiores--> 
+      <!-- /.card-body -->      
+      <div class="card-footer">
+        <hr class="hrfrm" style="border:solid 1px;color:#2e86c1;">
+        <br>
+        <div class="text-center">
+          <a href="{% url 'sidya:receta_confirmacion' %}" class="btn btn-success"><i class="fas fa-check-circle"></i> Aceptar</a>
+          <a href="{% url 'sidya:receta_list' %}" class="btn btn-danger"><i class="fas fa-times-circle"></i> Cancelar</a>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+  {% block control_modal %}
+
+  <div class="modal fade" id="popup1"></div>
+
+
+<script>
+
+
+  //Funcion para abrir una ventana modal
+  function abrir_modal_edit(url){
+    $("#popup2").modal('hide');
+    $("#popup1").load(url, function(){
+      $(this).modal({
+        backdrop: 'static',
+        keyboard: false
+      })
+    $(this).modal('show');
+    });
+    return false;
+  }
+
+  //Funcion para cerrar una ventana modal
+  function cerrar_modal_edit(){
+    $("#popup1").modal('hide');
+    return false;
+  }
+
+</script>
+
+<div class="modal fade" id="popup2"></div>
+
+<script> 
+
+  //Funcion para abrir una ventana modal
+  function abrir_modal_del(url){
+    $("#popup1").modal('hide');
+    $("#popup2").load(url, function(){
+      $(this).modal({
+        backdrop: 'static',
+        keyboard: false
+      })
+    $(this).modal('show');
+    });
+    return false;
+  }
+
+  //Funcion para cerrar una ventana modal
+  function cerrar_modal_del(){
+    $("#popup2").modal('hide');
+    return false;
+  }
+
+</script>
+
+
+  {% endblock %}
+  <!-- codigo js para esta plantilla -->
+<script>
+  
+  function selectProducto(id,clave,nombre,unimed_min,cal_unimed_min){
+    $('#cant').val();
+    $('#idprod').val(id);
+    $('#cveprod').val(clave);
+    $('#nomprod').val(nombre);
+    $('#umminprod').val(unimed_min);
+    $('#calprod').val(cal_unimed_min);
+    $('#cant').focus();
+    $('#cant').select();
+
+    //Limpiando la busqueda de filtrado de la tabla ingredientes
+    $('.table').DataTable().search('').draw();
+    table.ajax.reload();    
+
+  }
+
+  //Funcion para limpiar el detalle del ingrediente
+  function limpiarIngrediente(){
+      $('#cant').val();
+      $('#cveprod').val('');
+      $('#nomprod').val('');
+      $('#umminprod').val('');
+      $('#calprod').val('');
+      table.ajax.reload();
+      $('#cant').select();      
+    }
+
+  $('#cant').change(function(){
+    var calorias_prod = document.getElementById("calprod").value;
+    var cantidad_calorias = document.getElementById("cant").value;
+    var calorias_totales = calorias_prod * cantidad_calorias;
+
+    document.getElementById("calorias").value=calorias_totales;
+
+    var calorias_acum = document.getElementById("id_calorias_totales").value;
+
+    if (!calorias_acum) {
+      document.getElementById("id_calorias_totales").value=calorias_totales;
+    } else {
+      var calorias_act = calorias_acum;
+      var sumatoria_calorias;
+      sumatoria_calorias = parseFloat(calorias_act) + parseFloat(calorias_totales.toFixed(2));
+      document.getElementById("id_calorias_totales").value=sumatoria_calorias; 
+    }    
+
+  });
+
+  /*
+  //MODALES
+  
+  //Funcion para abrir la ventana modal de edicion
+  function abrir_modal_edit(url){
+    $("#popup1").load(url, function(){
+      $(this).modal({
+        backdrop: 'static',
+        keyboard: false
+      })
+    $(this).modal('show');
+    });
+    return false;
+  }
+
+  //Funcion para abrir una ventana modal de eliminar
+  function abrir_modal_del(url){
+    $("#popup2").load(url, function(){
+      $(this).modal({
+        backdrop: 'static',
+        keyboard: false
+      })
+    $(this).modal('show');
+    });
+    return false;
+  }
+
+  //Funcion para cerrar una ventana modal
+  function cerrar_modal(){
+    $("#popup").modal('hide');
+    return false;
+  }
+  */
+</script>
+<!--<script src="{% static 'base/js/sidya/receta.js' %}"></script>-->
+</div>    
+{% endblock contenidosec %}

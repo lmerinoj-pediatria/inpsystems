@@ -1,0 +1,651 @@
+<!--carga los archivos estaticos-->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Plataforma de Sistemas del Instituto Nacional de Pediatría</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--ICONO DE LA PAGINA-->
+  <link rel="icon" href="{% static 'base/img/icon2.png' %}">
+
+   <!--ARCHIVOS CSS-->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'base/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{% static 'base/css/adminlte.min.css' %}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- jQuery Confirm -->
+  <link rel="stylesheet" href="{% static 'base/css/jquery-confirm.css' %}">
+  <!-- JQuery UI -->
+  <link rel="stylesheet" href="{% static 'base/css/jquery-ui.min.css' %}">  
+  <!-- Datatables -->
+  <link rel="stylesheet" href="{% static 'base/css/datatables.min.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/buttons.bootstrap4.min.css' %}">
+  <!--Select2-->
+  <link rel="stylesheet" href="{% static 'base/css/bootstrap-select.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'base/css/calendar-blue.css' %}">
+  <link rel="stylesheet" href="{% static 'base/css/personal.css' %}">
+
+   <!--ARCHIVOS JS-->
+
+  <!-- jQuery -->
+  <script src="{% static 'base/js/jquery.min.js' %}"></script>
+  <!-- JQuery UI -->
+  <script src="{% static 'base/js/jquery-ui.min.js' %}"></script>
+  <!-- jQuery Confirm -->
+  <script src="{% static 'base/js/jquery-confirm.js' %}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{% static 'base/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- AdminLTE App -->
+  <script src="{% static 'base/js/adminlte.min.js' %}"></script>
+  <!-- Datatables -->
+  <script src="{% static 'base/js/datatables.min.js' %}"></script>
+  <script src="{% static 'base/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'base/js/dataTables.buttons.min.js' %}"></script>
+  <script src="{% static 'base/js/buttons.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'base/js/jszip.min.js' %}"></script>
+  <script src="{% static 'base/js/buttons.colVis.min.js' %}"></script>
+  <script src="{% static 'base/js/buttons.html5.min.js' %}"></script>
+  <script src="{% static 'base/js/buttons.flash.min.js' %}"></script>
+  <script src="{% static 'base/js/buttons.print.min.js' %}"></script> 
+  <!-- Select -->
+  <script src="{% static 'base/js/bootstrap-select.min.js' %}"></script>  
+  <!-- SweetAlert -->
+  <script src="{% static 'base/js/sweetalert2.all.min.js' %}"></script>  
+  
+  <!-- Calendario -->
+  <script src="{% static 'base/js/calendar.js' %}"></script>
+  <script src="{% static 'base/js/calendar-es.js' %}"></script>
+  <script src="{% static 'base/js/calendar-setup.js' %}"></script>
+  
+  <!-- Timepicker -->
+  <script src="{% static 'base/js/bootstrap-timepicker.min.js' %}"></script>
+    
+  <!-- Vue -->
+  <script src="{% static 'base/js/vue.js' %}"></script>  
+  <script src="{% static 'base/js/vue-resource.min.js' %}"></script>
+  <!-- Axios -->
+  <script src="{% static 'base/js/axios.min.js' %}"></script>  
+  <!-- Personalizado -->
+  <script src="{% static 'base/js/complement.js' %}"></script>
+  
+
+</head>
+<body class="hold-transition sidebar-collapse sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- right navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>      
+    </ul>    
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto"></ul>    
+      
+      <!-- Menu de la derecha -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">          
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="{% static 'base/img/defaultuser.png' %}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{ user.username }}</span>                  
+            </a>
+            <ul class="dropdown-menu" style="background:#333;">
+              <!-- Imagen del usuario -->
+              <li class="user-header">
+                <img src="{% static 'base/img/defaultuser.png' %}" class="img-circle" alt="User Image">
+                <p>
+                  <h4 style="color: #ffffff;">{{ user.username }}</h4>
+                  <h6 style="color: #ffffff;">{{ user.first_name }} {{ user.last_name }}</h6>   
+                </p>
+              </li>
+              <br>
+              <!-- Menu Footer-->
+              <li class="user-footer" style="border:solid 1px #333;">
+                <div>
+                   <center><a href="{% url 'main:logout' %}" style="background:#990000; color:#FFFFFF; font-weight: bold;" class="btn btn-default btn-flat">Cerrar sesión</a></center>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{% url 'main:home' %}" class="brand-link">
+      <img src="{% static 'base/img/icon2.png' %}"
+           
+           class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight">
+        {% block nomdev %}
+          INP Systems
+        {% endblock nomdev %}
+      </span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'base/img/iconmenu2.png' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <small style="color: #FFFFFF;" >MENÚ DE OPCIONES</small>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview">
+            <a href="{% url 'main:home' %}" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Inicio                
+              </p>
+            </a>            
+          </li>          
+          <!--Primera opcion del menu-->
+          <li class="nav-item has-treeview menu-close">
+            {% if perms.catalogos %}
+            <a href="#" class="nav-link">
+              <i class="nav-icon fab fa-buffer"></i>
+              <p>
+                Catálogos
+                <i class="fas fa-angle-right right"></i>
+              </p>
+            </a>
+            {% endif %}
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                {% if perms.catalogos.view_grupoalimento %}
+                <a href="{% url 'catalogos:grupo_alimento_list' %}" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon text-primary"></i>
+                  <p>Grupo de Alimentos</p>
+                </a>
+                {% endif %}
+              </li> 
+              <li class="nav-item">
+                {% if perms.catalogos.view_tipocomensal %}
+                <a href="{% url 'catalogos:tipo_comensal_list' %}" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon text-primary"></i>
+                  <p>Comensal</p>
+                </a>
+                {% endif %}
+              </li>
+              <li class="nav-item">
+                {% if perms.catalogos.view_tipodieta %}
+                <a href="{% url 'catalogos:tipo_dieta_list' %}" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon text-primary"></i>
+                  <p>Dietas</p>
+                </a>
+                {% endif %}
+              </li>              
+              <li class="nav-item">
+                {% if perms.catalogos.view_producto %}
+                <a href="{% url 'catalogos:producto_list' %}" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon text-primary"></i>
+                  <p>Producto</p>
+                </a>
+                {% endif %}
+              </li>              
+              <li class="nav-item">
+                {% if perms.catalogos.view_unidadmedida %}
+                <a href="{% url 'catalogos:unidad_medida_list' %}" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon text-primary"></i>
+                  <p>Unidad de Medida</p>
+                </a>
+                {% endif %}
+              </li>                     
+            </ul>            
+          </li>
+          <!--Fin Primera opcion del menu-->          
+          <!--Segunda opcion del menu-->
+          <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-server"></i>
+              <p>
+                Sistemas
+                <i class="fas fa-angle-right right"></i>
+              </p>
+            </a>
+            <!--Primer sistema-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <li class="nav-item has-treeview menu-close">
+                  {% if perms.sidya %}
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-utensils text-lightblue"></i>
+                    <p>
+                      SIDYA
+                      <i class="fas fa-angle-right right"></i>
+                    </p>
+                  </a>
+                  {% endif %}                                  
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">                      
+                      {% if perms.sidya.view_receta %}
+                      <a href="{% url 'sidya:receta_list' %}" class="nav-link">
+                        <i class="nav-icon far fa-file-alt text-danger"></i>
+                        <p>Recetas</p>
+                      </a>
+                      {% endif %}                      
+                    </li>
+                    <li class="nav-item">                     
+                      {% if perms.sidya.view_menu %}
+                      <a href="{% url 'sidya:menu_list' %}" class="nav-link">
+                        <i class="nav-icon far fa-file-alt text-danger"></i>
+                        <p>Menús</p>
+                      </a>                                 
+                      {% endif %}   
+                    </li>              
+                  </ul>                            
+                </li>   
+              </li>              
+            </ul>
+            <!--Fin Primer sistema-->
+            <!--Segundo sistema-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <li class="nav-item has-treeview menu-close">
+                  {% if perms.sies %}
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-file-signature text-orange"></i>
+                    <p>
+                      SIES
+                      <i class="fas fa-angle-right right"></i>
+                    </p>
+                  </a>
+                  {% endif %}
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <li class="nav-item has-treeview menu-close">
+                        {% if perms.sies %}
+                        <a href="#" class="nav-link">
+                          <i class="nav-icon far fa-file-alt text-danger"></i>
+                          <p>
+                            Encuestas
+                            <i class="fas fa-angle-right right"></i>
+                          </p>
+                        </a>
+                        {% endif %}
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            {% if perms.sies.view_encuestamedicos %}
+                            <a href="{% url 'sies:encuesta_medicos_list' %}" class="nav-link">
+                              <i class="fas fa-user-md nav-icon text-warning"></i>
+                              <p>Médicos</p>
+                              <i class="fas fa-angle-right right"></i>
+                            </a>
+                            {% endif %}
+                            <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                {% if perms.sies.view_encuestamedicos %}
+                                <a href="{% url 'sies:encuesta_medicos_list' %}" class="nav-link">
+                                  <i class="fas fa-clipboard-list nav-icon text-info"></i>
+                                  <p>Listado</p>
+                                </a>
+                                {% endif %}
+                              </li>
+                              <!--<li class="nav-item">
+                                {% if perms.sies.add_encuestamedicos %}
+                                <a href="{% url 'sies:encuesta_medicos_new' %}" class="nav-link">
+                                  <i class="fas fa-clipboard nav-icon text-info"></i>
+                                  <p>Registro</p>
+                                </a>
+                                {% endif %}
+                              </li>-->                               
+                            </ul>         
+                          </li>
+                          <li class="nav-item">
+                            {% if perms.sies.view_encuestapacientes %}
+                            <a href="{% url 'sies:encuesta_pacientes_list' %}" class="nav-link">
+                              <i class="fas fa-user nav-icon text-warning"></i>
+                              <p>Pacientes</p>
+                            </a>
+                            {% endif %}
+                          </li>                               
+                        </ul>                          
+                      </li>   
+                    </li>              
+                  </ul>                            
+                </li>   
+              </li>              
+            </ul>
+            <!--Fin Segundo sistema-->
+            <!--Tercer sistema-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <li class="nav-item has-treeview menu-close">
+                  {% if perms.sigmefi %}
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-donate text-olive"></i>
+                    <p>
+                      SIGMEFI
+                      <i class="fas fa-angle-right right"></i>
+                    </p>
+                  </a>
+                  {% endif %}
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <li class="nav-item has-treeview menu-close">
+                        <a href="{% url 'sigmefi:registro_list' %}" class="nav-link">
+                          <i class="nav-icon far fa-file-alt text-danger"></i>
+                          <p>
+                            Registro de pacientes                            
+                          </p>
+                        </a>                                                
+                      </li>   
+                    </li>              
+                  </ul>                            
+                </li>   
+              </li>              
+            </ul>
+            <!--Fin Tercer sistema-->
+            <!--Cuarto sistema-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <li class="nav-item has-treeview menu-close">
+                  {% if perms.sies %}
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-file-alt text-orange"></i>
+                    <p>
+                      SIGO
+                      <i class="fas fa-angle-right right"></i>
+                    </p>
+                  </a>
+                  {% endif %}
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <li class="nav-item has-treeview menu-close">
+                        <a href="#" class="nav-link">
+                          <i class="nav-icon far fa-file-alt text-danger"></i>
+                          <p>
+                            Registro de oficios
+                            <i class="fas fa-angle-right right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">
+                              <i class="fas fa-user-md nav-icon text-warning"></i>
+                              <p>INP</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">
+                              <i class="fas fa-user nav-icon text-warning"></i>
+                              <p>Externos</p>
+                            </a>
+                          </li>                               
+                        </ul>                          
+                      </li>   
+                    </li>              
+                  </ul>                            
+                </li>   
+              </li>              
+            </ul>
+            <!--Fin Cuarto sistema-->
+            <!--Quinto sistema-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <li class="nav-item has-treeview menu-close">
+                  {% if perms.sies %}
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-file-archive text-purple"></i>
+                    <p>
+                      SIREA
+                      <i class="fas fa-angle-right right"></i>
+                    </p>
+                  </a>
+                  {% endif %}
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <li class="nav-item has-treeview menu-close">
+                        <a href="#" class="nav-link">
+                          <i class="nav-icon far fa-file-alt text-danger"></i>
+                          <p>
+                            Encuestas
+                            <i class="fas fa-angle-right right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">
+                              <i class="fas fa-user-md nav-icon text-warning"></i>
+                              <p>Médicos</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">
+                              <i class="fas fa-user nav-icon text-warning"></i>
+                              <p>Pacientes</p>
+                            </a>
+                          </li>                               
+                        </ul>                          
+                      </li>   
+                    </li>              
+                  </ul>                            
+                </li>   
+              </li>              
+            </ul>
+            <!--Fin Quinto sistema-->
+            <!--Sexto sistema-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <li class="nav-item has-treeview menu-close">
+                  {% if perms.sies %}
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-comments text-teal"></i>
+                    <p>
+                      SISCHAT
+                      <i class="fas fa-angle-right right"></i>
+                    </p>
+                  </a>
+                  {% endif %}
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <li class="nav-item has-treeview menu-close">
+                        <a href="#" class="nav-link">
+                          <i class="nav-icon far fa-file-alt text-danger"></i>
+                          <p>
+                            Encuestas
+                            <i class="fas fa-angle-right right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">
+                              <i class="fas fa-user-md nav-icon text-warning"></i>
+                              <p>Médicos</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">
+                              <i class="fas fa-user nav-icon text-warning"></i>
+                              <p>Pacientes</p>
+                            </a>
+                          </li>                               
+                        </ul>                          
+                      </li>   
+                    </li>              
+                  </ul>                            
+                </li>   
+              </li>              
+            </ul>
+            <!--Fin Sexto sistema-->
+            <!--Tercer sistema-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <li class="nav-item has-treeview menu-close">
+                  {% if perms.sies %}
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-file-prescription text-maroon"></i>
+                    <p>
+                      SISEI
+                      <i class="fas fa-angle-right right"></i>
+                    </p>
+                  </a>
+                  {% endif %}
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <li class="nav-item has-treeview menu-close">
+                        <a href="#" class="nav-link">
+                          <i class="nav-icon far fa-file-alt text-danger"></i>
+                          <p>
+                            Encuestas
+                            <i class="fas fa-angle-right right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">
+                              <i class="fas fa-user-md nav-icon text-warning"></i>
+                              <p>Médicos</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">
+                              <i class="fas fa-user nav-icon text-warning"></i>
+                              <p>Pacientes</p>
+                            </a>
+                          </li>                               
+                        </ul>                          
+                      </li>   
+                    </li>              
+                  </ul>                            
+                </li>   
+              </li>              
+            </ul>
+            <!--Fin Tercer sistema-->
+            
+          </li>
+          <!--Fin Segunda opcion del menu-->
+          <!--Última opcion del menu-->
+          <li class="nav-item has-treeview">
+            <a href="{% url 'main:home' %}" class="nav-link">
+              <i class="nav-icon fas fa-journal-whills"></i>
+              <p>
+                Base de conocimientos                
+              </p>
+            </a>            
+          </li>
+          <!--Última Segunda opcion del menu-->                      
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            
+              <h1>
+                <strong>
+                  {% block nomsec %}
+                    Nombre Sección
+                  {% endblock nomsec %}
+                </strong>
+              </h1>
+            
+          </div>
+          
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content"> 
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          {% block newbtn %}
+            <a class="btn btn-primary" href="#"><i class="nav-icon fas fa-plus-circle"></i> Nuevo</a>
+          {% endblock newbtn %}          
+        </div>
+        <div class="card-body">          
+          {% block contenidosec %}
+
+            AQUI VA EL CONTENIDO DE LA APLICACIÓN
+          
+          {% endblock contenidosec %}
+        </div>        
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% block js %}
+    <script>
+      // Validaciones      
+          {% if form.errors %}
+            var errors = '';
+              {% for field in form %}
+                  {% for error in field.errors %}
+                      errors += '{{ error }}\n';
+                  {% endfor %}
+              {% endfor %}
+              Swal.fire({
+                  title: 'Error!',
+                  text: errors,
+                  icon: 'error'
+              });          
+          {% endif %}
+    </script>          
+  {% endblock js %}
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 1.0
+    </div>
+    <strong>Copyright &copy; 2020 <a href="#">INP-Systems</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- Código para el control de los modales -->
+{% block control_modal %}
+
+
+
+{% endblock %}
+
+</body>
+</html>

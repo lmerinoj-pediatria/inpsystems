@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block nomsec %} Listado de Artículos {% endblock nomsec %}
+
+{% block nomsecmp %} Listado Artículos {% endblock nomsecmp %}
+
+{% block newbtn %}
+  {% if perms.catalogos.add_articulo%}
+  <a class="btn btn-primary" href="{% url 'catalogos:articulo_new' %}"><i class="nav-icon fas fa-plus-circle"></i> Nuevo Artículo</a> 
+  {% endif %}
+{% endblock newbtn %}
+
+{% block contenidosec %}
+
+<table id="tablelist" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>      
+      <th>Clave</th>
+      <th>Nombre</th>
+      <th>Tipo de Catálogo</th>
+      <th>Presentación</th>
+      <th>Unidad de Medida</th>
+      <th>Estado</th> 
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in obj %}
+        <tr>            
+            <td>{{item.clave}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.tipo_catalogo}}</td>
+            <td>{{item.presentacion}}</td>
+            <td>{{item.unimed}}</td>
+            <td>
+              {% if item.habilitado %}
+                <span class="label bg-success rounded p-2">Activo</span>
+              {% else %}
+                <span class="label bg-danger rounded p-2">Inactivo</span>
+              {% endif %}
+            </td> 
+        </tr>
+        {% endfor %}    
+    </tbody>    
+  </table>
+           
+{% endblock contenidosec %}

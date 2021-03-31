@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block nomdev %} INP | SIGMEFI {% endblock nomdev %}
+
+{% block nomsec %} Listado de Registros {% endblock nomsec %}
+
+{% block nomsecmp %} Listado Registros {% endblock nomsecmp %}
+
+{% block newbtn %}
+  {% if perms.sigmefi.add_registro%}
+  <a class="btn btn-primary" href="{% url 'sigmefi:registro_new' %}"><i class="nav-icon fas fa-plus-circle"></i> Nuevo Registro</a> 
+  {% endif %}
+{% endblock newbtn %}
+
+{% block contenidosec %}
+
+<table id="tablelist" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>     
+      <th>#</th>
+      <th>Fecha de registro</th>
+      <th>Expediente</th>
+      <th>Apellido Paterno</th>
+      <th>Apellido Materno</th>
+      <th>Nombre</th>
+      <th>Póliza de Afiliación</th>
+      <th>CURP</th>
+      <th>CIE-9</th>
+      <th>CIE-10</th>
+      <th>Diagnóstico</th>
+      <th>Categoría</th>
+      <th>Tipo de registro</th>
+      <th>Folio/Declaratoria</th>
+      <th>Fecha de Ingreso</th>
+      <th>Fecha de Atención</th>
+      <th>Fecha de Egreso</th>
+      <th>Comentarios</th>
+      <th>Monto Recuperado</th>
+      <th>Monto Erogado</th>
+      <th>Estado</th>      
+      <th>Activado/Desactivado</th> 
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in obj %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.created}}</td>
+            <td>{{item.expediente}}</td>
+            <td>{{item.ap_paterno}}</td>
+            <td>{{item.ap_materno}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.poliza}}</td>
+            <td>{{item.curp}}</td>
+            <td>{{item.cie9}}</td>
+            <td>{{item.cie10}}</td>
+            <td>{{item.diagnostico}}</td>
+            <td>{{item.categoria}}</td>
+            <td>{{item.tipo_registro}}</td>
+            <td>{{item.folio}}</td>
+            <td>{{item.fecha_ingreso}}</td>
+            <td>{{item.fecha_atencion}}</td>
+            <td>{{item.fecha_egreso}}</td>
+            <td>{{item.comentario}}</td>
+            <td>{{item.monto_recuperado}}</td>
+            <td>{{item.monto_erogado}}</td>
+            <td>{{item.estatus}}</td>            
+            <td>
+              {% if item.habilitado %}
+                <button class="btn btn-success btn-xs">Activo</button>
+              {% else %}
+                <button class="btn btn-danger btn-xs">Inactivo</button>
+              {% endif %}
+            </td> 
+        </tr>
+        {% endfor %}    
+    </tbody>    
+  </table>
+           
+{% endblock contenidosec %}

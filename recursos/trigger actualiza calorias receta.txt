@@ -1,0 +1,14 @@
+DELIMITER $$
+
+CREATE TRIGGER actualiza_calorias_receta AFTER UPDATE ON sidya_receta
+FOR EACH ROW BEGIN
+UPDATE catalogos_producto SET cal_unimed_min = NEW.calorias_totales
+WHERE catalogos_producto.clave = CAST(NEW.id as CHAR);
+END$$
+
+DELIMITER ;
+
+
+
+
+

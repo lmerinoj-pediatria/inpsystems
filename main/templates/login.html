@@ -1,0 +1,116 @@
+<!--carga los archivos estaticos-->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Plataforma de Sistemas del Instituto Nacional de Pediatría</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--ICONO DE LA PAGINA-->
+  <link rel="icon" href="{% static 'base/img/icon.png' %}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'base/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static 'base/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'base/css/adminlte.min.css' %}">
+  <!-- jQuery Confirm -->
+  <link rel="stylesheet" href="{% static 'base/css/jquery-confirm.css' %}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition login-page" style="background-image: url(../../../static/base/img/teclado1.jpg);">
+<div class="login-box">
+  <div class="login-logo">
+    <img src="{% static 'base/img/logologin.png' %}" class="img-responsive brand-image img-circle">
+    <img src="{% static 'base/img/inpsys2.png' %}" class="img-responsive ml-3">
+    <!--<a href="{% static 'base/index2.html' %}" class="text-white"><b><span class="ml-2">INP</span> </b>Systems</a>-->
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Acceso a la plataforma</p>     
+
+      <form method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" name="username" id="id_username" class="form-control" placeholder="Usuario" autofocus>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password" id="id_password" class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>        
+          <!-- /.col -->
+          <div class="col">
+            <button type="submit" class="btn btn-primary btn-block">Acceder</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>         
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{% static 'base/plugins/jquery/jquery.min.js' %}"></script>
+<!-- jQuery Confirm -->
+<script src="{% static 'base/js/jquery-confirm.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'base/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'base/js/adminlte.min.js' %}"></script>
+
+<!-- Mensaje de validación -->
+<script>
+  function mensaje(msg, color = 'red') {
+    if (color == "success") {
+      color = "green";
+    }
+    if (color == "error") {
+      color = "red";
+    }
+    $.alert({
+      title: '¡¡ Error !!',
+      theme: 'modern',
+      type: color,
+      content: msg
+    });
+  }
+</script>
+<script>
+  {% if form.errors %}
+    {% for field in form %}
+      {% if field.errors %}
+        {% for error in field.errors %}            
+          mensaje('<b>El nombre del usuario y/o contraseña son incorrectos.</b>');
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        mensaje('<b>El nombre del usuario y/o contraseña son incorrectos.</b>');
+      {% endfor %}
+    {% endif %}
+  {% endif %}  
+</script>
+<!-- Fin mensaje de validación-->
+
+</body>
+</html>

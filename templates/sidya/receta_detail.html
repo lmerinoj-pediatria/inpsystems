@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block nomdev %} INP | SIDYA {% endblock nomdev %}
+
+{% block nomsec %} Detalle de Receta {% endblock nomsec %}
+
+{% block nomsecmp %} Detalle Receta {% endblock nomsecmp %}
+
+{% block newbtn %}  
+{% endblock newbtn %}
+
+{% block contenidosec %}
+
+<div class="card">
+  <div class="card-header bg-dark text-center">
+    <h2>{{ receta.nombre }}</h2>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">         
+    <div class="row">              
+      <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <h5 class="text-bold">
+          Calorías de la receta: 
+            <span class="text-danger">
+              {{ receta.calorias_totales }}
+            </span>
+        </h5>
+      </div>
+      <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <h5 class="text-bold">
+          Unidad de Medida: 
+            <span class="text-danger">
+              {{ receta.unidad_medida }}
+            </span>
+        </h5>
+      </div>                                         
+    </div>
+    <h2 class="text-primary">INGREDIENTES</h2>
+    <table class="table table-bordered dt-responsive table-striped table-hover">
+      <thead>
+      <tr> 
+        <th>Cantidad</th>
+        <th>Unidad de Medida</th>
+        <th>Producto</th>
+      </tr>
+      </thead>
+      <tbody>
+          {% for ingrediente in ingredientes %}
+          <tr>
+            <td>{{ingrediente.cantidad}}</td>
+            <td>{{ingrediente.unidad_medida}}</td>
+            <td>{{ingrediente.producto}}</td> 
+          </tr>
+          {% endfor %}    
+      </tbody>    
+    </table>
+  </div>
+  <!-- /.card-body -->  
+  <div class="card-footer text-center">
+    <a href="{% url 'sidya:receta_list' %}" class="btn btn-danger"><i class="fas fa-times-circle"></i> Cerrar</a>
+    <a href="{% url 'sidya:receta_print' receta.id %}" class="btn btn-warning" target="_blank"><i class="fas fa-print"></i> Imprimir</a>
+  </div>
+  <!-- /.card-footer -->
+</div>
+<!-- /.card -->
+           
+{% endblock contenidosec %}
